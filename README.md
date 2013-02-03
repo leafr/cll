@@ -1,16 +1,17 @@
 #### Cute little logger
 
-    logger = require('cll')
+```javascript
+logger = require('cll')
      
-    logger.config({
-      padding: 3,
-      levelmark: 'smile' // smile/text
-      color: true
-    })
+logger.config({
+  padding: 3,
+  levelmark: 'smile' // smile or text
+  color: true
+})
     
-    logger.error('ZOMG')
+logger.error('ZOMG')
     
-    //   (-_-')   ZOMG
-    
+//   (-_-')   ZOMG
+```    
 
 
