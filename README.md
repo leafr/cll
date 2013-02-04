@@ -10,13 +10,9 @@ logger.config({
   timestamp: true
 })
 
-logger.info('ZOMG')
-logger.error('ZOMG')
-logger.fatal('ZOMG')
-
-//   ᶘᵒᴥᵒᶅ    ZOMG
-//   (-_-')   ZOMG
-//   (o//O)   ZOMG
+logger.info('ZOMG')    //   ᶘᵒᴥᵒᶅ    ZOMG
+logger.error('ZOMG')   //   (-_-')   ZOMG
+logger.fatal('ZOMG')   //   (o//O)   ZOMG
 ```    
 
 
