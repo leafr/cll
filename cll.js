@@ -39,15 +39,14 @@ function rand(array) {
 
 function changeLevelmark(name) {
   switch(name) {
-    case 'text':
-      getLevelmark = levelmarkText
-      break;
-    case 'smile':
-      getLevelmark = levelmarkSmile
-      break;
-    default:
-      getLevelmark = levelmarkText
-      break;
+  case 'text':
+    getLevelmark = levelmarkText
+    break;
+  case 'smile':
+    getLevelmark = levelmarkSmile
+    break;
+  default:
+    getLevelmark = levelmarkText
   }
 }
 
