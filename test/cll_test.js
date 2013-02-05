@@ -1,17 +1,30 @@
 var assert = require('assert')
   , cll = require('./../lib/cll')
+  , exec = require('child_process').exec
+  , path = require('path');
 
-describe('logging', function() {
-  it('log', function() {
-    cll.info('zomg')
 
-    cll.config({
-      timestamp: true,
-      pid: true,
-      gid: true
-    })
+function assertStdout(command, text, done){
+  exec(command, function(error, stdout, stderr){
+    assert.equal(stdout, text);
+    done();
+  });
+}
 
-    cll.info('zomg')
+describe('logging', function(){
+  var app = path.resolve('./test/app.js')
+    , command = 'node ' + app;
+
+  it('writes to stdout', function(done){
+    assertStdout(command, '  info     foo bar\n', done)
   })
+
 })
 
+// TODO:
+//
+//   cll.outputs({
+//     file: 'outputs/foo',
+//     file: 'outputs/bar'
+//   })
+//
