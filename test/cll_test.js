@@ -7,7 +7,8 @@ describe('logging', function() {
 
     cll.config({
       timestamp: true,
-      pid: true
+      pid: true,
+      gid: true
     })
 
     cll.info('zomg')
