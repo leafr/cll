@@ -35,24 +35,22 @@ describe('logging', function(){
     , cmd = command('node ' + app)
     , base = path.resolve('./test/outputs')
     , files = ['foo', 'bar'].map(function(f){ return path.join(base, f) });
+  
+  beforeEach(function(done) {
+    files.forEach(fs.unlink);
+    done();
+  });
 
   it('writes to stdout', function(done){
     assertStdout(cmd('stdout'), '  info     foo bar\n', done)
   })
-  
-  it('writes to outputs', function(done){
+
+  it('writes to outputs', function(){
     cll.config({files: files});
 
     cll.info('foo bar', function(file){
-      assert.equal('  info     foo bar\n', fs.readFileSync(file))
-      done()
+      assert.equal('  info     foo bar\n', fs.readFileSync(file, 'utf8'))
     })
-    
-    done()
-
-    files.forEach(function(file){
-      fs.unlink(file);
-    });
   })
 })
 
