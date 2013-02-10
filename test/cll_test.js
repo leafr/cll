@@ -17,17 +17,18 @@ function command(start){
   }
 }
 
-describe('logging', function(){
+describe('cll', function(){
   var app = path.resolve('./test/app.js')
     , cmd = command('node ' + app)
-    , base = path.resolve('./test/outputs')
-    , file = path.join(base, 'foo');
+    , base = path.resolve('./test/outputs');
 
   it('writes to stdout', function(done){
-    assertStdout(cmd('stdout'), '   info      foo bar\n', done);
+    assertStdout(cmd('stdout'), '  info      foo bar\n', done);
   });
 
   it('writes to file', function(done){
+    var file = path.join(base, 'foo');
+    
     cll.configure({
       colors: false,
       levelmark: 'text',
@@ -35,7 +36,32 @@ describe('logging', function(){
     });
 
     cll.info('foo bar', function(){
-      assert.equal('   info      foo bar\n', fs.readFileSync(file, 'utf8'));
+      assert.equal('  info      foo bar\n', fs.readFileSync(file, 'utf8'));
+      done();
+    });
+  });
+
+  it('uses config parameters', function(done){
+    var file = path.join(base, 'config');
+    
+    cll.configure({
+      colors: false,
+      levelmark: 'text',
+      stdout: false,
+      file: file,
+      pid: true,
+      gid: true,
+      padding: '  ',
+      delimiter: ' | '
+    });
+
+    var pid = process.pid;
+    var gid = process.getgid();
+    var msg = 'foo bar';
+    var exp = '  info      | ' + pid + ' | ' + gid + ' | ' + msg + '\n';
+
+    cll.info(msg, function(){
+      assert.equal(exp, fs.readFileSync(file, 'utf8'));
       done();
     });
   });

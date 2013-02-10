@@ -2,21 +2,21 @@
 
 ```javascript
 logger = require('cll')
-     
-logger.config({
-  padding: 3,
-  levelmark: 'smile', // smile/text
+
+logger.configure({
   colors: true,
-  timestamp: true
+  levelmark: 'smile', // smile or text
+  pid: true,
+  time: true,
+  delimiter: ' | '
 })
 
-logger.info('ZOMG')    
+logger.info('ZOMG')
 logger.error('ZOMG')   
-logger.fatal('ZOMG')   
+logger.fatal('ZOMG')  
 
-//   ᶘᵒᴥᵒᶅ    ZOMG
-//   (-_-')   ZOMG
-//   (o//O)   ZOMG
+//  ᶘᵒᴥᵒᶅ     | 4169 | 04:32:47 | ZOMG
+//  (-_-')    | 4169 | 04:32:47 | ZOMG
+//  (O//o)    | 4169 | 04:32:47 | ZOMG
 ```    
-
 
