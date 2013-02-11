@@ -40,7 +40,7 @@ describe('cll', function(){
       done();
     });
   });
-
+  
   it('uses config parameters', function(done){
     var file = path.join(base, 'config');
     
@@ -60,8 +60,9 @@ describe('cll', function(){
     var msg = 'foo bar';
     var exp = '  info      | ' + pid + ' | ' + gid + ' | ' + msg + '\n';
 
+    delete cll.writeStream;
     cll.info(msg, function(){
-      assert.equal(exp, fs.readFileSync(file, 'utf8'));
+      assert.equal(exp, fs.readFileSync(file).toString());
       done();
     });
   });

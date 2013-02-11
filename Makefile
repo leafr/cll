@@ -6,8 +6,9 @@ test: clean
 	  	--recursive            \
 		--reporter nyan        \
 		$(TESTS)
+
 clean:
-	rm $(OUTPUTS)
+	rm -f $(OUTPUTS)
 
 .PHONY: all test clean
 
